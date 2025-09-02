@@ -1,0 +1,1 @@
+worker: python claude_love_2025_production.py
