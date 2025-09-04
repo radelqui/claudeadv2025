@@ -6,10 +6,5 @@ scipy
 lxml
 html5lib
 beautifulsoup4
-pandas-datareader
-alpha-vantage
-finnhub-python
-oandapyv20
-currencyapipy
-forex-python
+
 
