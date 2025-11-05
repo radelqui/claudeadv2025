@@ -1,0 +1,98 @@
+# ============================================================================
+# CONFIGURACIÓN METATRADER 5
+# ============================================================================
+
+# Credenciales MT5
+mt5:
+  account: 206895
+  password: "Xpuerta08!"
+  server: "FusionMarkets_demo"
+
+  # Configuración de trading
+  magic_number: 234000  # Identificador único del bot
+
+  # Tamaños de lote
+  lot_sizes:
+    micro: 0.01   # $1000 = 0.01 lotes
+    mini: 0.10    # $10,000 = 0.10 lotes
+    standard: 1.0  # $100,000 = 1.0 lote
+
+  # Riesgo por trade
+  risk_per_trade_pct: 1.0  # 1% del balance por trade
+  max_risk_per_trade_usd: 100  # Máximo $100 por trade
+
+  # Símbolos (Yahoo Finance -> MT5)
+  symbols:
+    EURUSD=X: EURUSD
+    GBPUSD=X: GBPUSD
+    USDJPY=X: USDJPY
+
+  # Slippage
+  slippage_points: 10  # 10 points = 1 pip en 5 dígitos
+
+  # Trailing stop
+  trailing_stop:
+    enabled: true
+    activation_pct: 0.5  # Activar al 50% del TP
+    distance_pct: 0.3    # Distancia 30% del profit
+
+# Configuración de ejecución
+execution:
+  mode: "mt5"  # "mt5" o "paper" o "telegram_only"
+
+  # Confirmación manual
+  require_confirmation: false  # Si true, espera confirmación antes de ejecutar
+
+  # Logging de trades
+  log_trades: true
+  trades_log_file: "mt5_trades.csv"
+
+# Límites de seguridad
+safety:
+  max_daily_trades: 10
+  max_open_positions: 3
+  max_daily_loss_pct: 5.0  # Stop trading si pérdida > 5%
+  max_drawdown_pct: 20.0    # Stop trading si drawdown > 20%
+
+  # Verificaciones antes de trade
+  check_spread: true
+  max_spread_pips: 5  # No tradear si spread > 5 pips
+
+  check_margin: true
+  min_margin_level_pct: 200  # Mínimo 200% margin level
+
+# Horarios de trading (opcional)
+trading_hours:
+  enabled: false  # Si true, solo tradea en estos horarios
+  timezone: "UTC"
+
+  sessions:
+    # Sesión de Londres (más volumen EUR/GBP)
+    - start: "07:00"
+      end: "16:00"
+    # Sesión de Nueva York (más volumen USD)
+    - start: "13:00"
+      end: "22:00"
+
+  skip_weekends: true
+  skip_holidays: true
+
+# Notificaciones
+notifications:
+  telegram_enabled: true
+
+  # Qué notificar
+  notify_on:
+    connection: true
+    trade_open: true
+    trade_close: true
+    error: true
+    daily_summary: true
+    milestone: true  # Cada 10 trades, etc.
+
+# Modo demo/real
+environment:
+  is_demo: true  # IMPORTANTE: true = demo, false = real
+
+  # Advertencias
+  confirm_real_trading: true  # Pedir confirmación si is_demo=false
